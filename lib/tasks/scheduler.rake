@@ -16,7 +16,7 @@ task :update_feed => :environment do
   xml  = open( url ).read.toutf8
   doc = REXML::Document.new(xml)
   # パスの共通部分を変数化（area[1]は「奈良県北部」を指定している）
-  xpath = 'weatherforecast/pref/area[1]/info[1]/rainfallchance/'
+  xpath = 'weatherforecast/pref/area[1]/info/rainfallchance/'
   # 6時〜12時の降水確率（以下同様）
   per06to12 = doc.elements[xpath + 'period[2]'].text
   per12to18 = doc.elements[xpath + 'period[3]'].text
