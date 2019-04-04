@@ -51,5 +51,31 @@ task :update_feed => :environment do
     }
     client.multicast(user_ids, message)
   end
+
+  min_per = 0
+  if per06to12.to_i == min_per || per12to18.to_i == min_per || per18to24.to_i == min_per
+    word1 =
+      ["いい朝だね！",
+       "今日もよく眠れた？",
+       "二日酔い大丈夫？",
+       "早起きしてえらいね！",
+       "いつもより起きるのちょっと遅いんじゃない？"].sample
+    word2 =
+      ["気をつけて行ってきてね(^^)",
+       "良い一日を過ごしてね(^^)",
+       "今日も一日楽しんでいこうね(^^)",
+       "楽しいことがありますように(^^)"].sample
+
+    push =
+      "#{word1}\n降水確率は0%みたい！\n#{word2}"
+
+    user_ids = User.all.pluck(:line_id)
+    message = {
+      type: 'text',
+      text: push
+    }
+    client.multicast(user_ids, message)
+  end
+
   "OK"
 end
