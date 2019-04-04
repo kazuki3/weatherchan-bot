@@ -90,6 +90,8 @@ class LinebotController < ApplicationController
           text: push
         }
         client.reply_message(event['replyToken'], message)
+        user_ids = User.all.pluck(:line_id)
+        client.multicast(user_ids, message)
         # LINEお友達追された場合
       when Line::Bot::Event::Follow
         # 登録したユーザーのidをユーザーテーブルに格納
