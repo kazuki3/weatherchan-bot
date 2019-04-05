@@ -50,10 +50,7 @@ task :update_feed => :environment do
       text: push
     }
     client.multicast(user_ids, message)
-  end
-
-  min_per = 0
-  if per06to12.to_i == min_per && per12to18.to_i == min_per && per18to24.to_i == min_per
+  else
     word1 =
       ["いい朝だね！",
        "今日もよく眠れた？",
